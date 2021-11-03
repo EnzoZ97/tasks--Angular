@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+    <div class="row mb-3">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body">
+                        <input type="text" class="form-control p-2 text-center" [(ngModel)]= "Task"
+                        (keyup.enter)="AddTask()" placeholder="Write a task...">                 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4 offset-4 mt-3" *ngIf="ListOfTask.length === 0"> 
+        <div class="card bg-dark">
+            <div class="card-body text-center">
+                <p class="card-text text-light">Don't there tasks</p>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="row mb-1" *ngFor="let value of ListOfTask; let i = index">
+        <div class="col-10 offset-1 text-center">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text"> {{value.name}} 
+                        <span class="float-start">
+                            <i (click)="Actualize(i)"  [class.text-success]="value.state" [ngClass]="value.state ? 'fas fa-check-circle' : 'far fa-circle'  "></i>
+                        </span>
+                        <span class="float-end">
+                            <i class="Icon-trash far fa-trash-alt me-5 text-danger" (click)="RemoveTask(i)"></i>
+                        </span>
+                    </p> 
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
